@@ -13,7 +13,7 @@ integration should be executed in an external CI system such as Bamboo/Jenkins)
 ## Usage
 
 While the application is configurable using standard Spring properties, the default parameters when
-ommited should suffice if the user has access to the WWW. Custom configuration elements that
+ommited should suffice if the user has access to the internet. Custom configuration elements that
 , most of the times, won't require change are hosted in
 
 For this, simply run the Main.kt class to start the server up. If you want to
