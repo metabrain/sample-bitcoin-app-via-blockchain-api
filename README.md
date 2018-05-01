@@ -22,8 +22,8 @@ application under Docker using:
 
 ```bash
 mvn clean install &&
-./buildDocker &&
-docker run --name BTC-xplorer bitcoin-explorer-via-blockchain-api
+docker build --label develop -t bitcoin-explorer-via-blockchain-api . &&
+docker run --rm --name BTC-xplorer bitcoin-explorer-via-blockchain-api
 ```
 
 Default server will be started on port **8080**.
@@ -34,14 +34,14 @@ Currently only one endpoint exists.
 
 Returns all unspent transation outputs for the particular
 
-_Example:_ `/address/1Aff4FgrtA1dZDwajmknWTwU2WtwUvfiXa`
+_Example:_ `/address/1P7doinGGP4eoSPR3i9xV9JbQciJoWkRFf`
 ```javascript
 {
     "outputs": [
         {
-            "value": 63871,
-            "tx_hash": "db9b6ff6ba4fd5813fe1ae8980ee30645221e333c0f647bb1fc777d0f58d3e23",
-            "output_idx": 1
+            "value": 5000000000,
+            "tx_hash": "38f51ecbd0b7df65700fea7e13374bfc3511aa4a2556a487820366fcdbc4c732",
+            "output_idx": 0
         }
     ]
 }
