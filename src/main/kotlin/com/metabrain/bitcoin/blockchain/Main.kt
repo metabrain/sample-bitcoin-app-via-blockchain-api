@@ -10,9 +10,7 @@ open class Main {
     companion object {
         private var ctx: ConfigurableApplicationContext? = null
 
-        @Throws(Exception::class)
-        @JvmStatic
-        fun main(args: Array<String>) {
+        @JvmStatic fun main(args: Array<String>) {
             ctx = SpringApplication.run(arrayOf(
                     Config::class.java,
                     // TODO: Change to Route.kt again maybe..? Which is better?

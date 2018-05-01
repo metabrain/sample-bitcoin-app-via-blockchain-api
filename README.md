@@ -21,9 +21,9 @@ have that extra layer of virtualization, feel free to build and run the
 application under Docker using:
 
 ```bash
-mvn clean install &&
-docker build --label develop -t bitcoin-explorer-via-blockchain-api . &&
-docker run --rm --name BTC-xplorer bitcoin-explorer-via-blockchain-api
+mvn clean install -DskipTests &&
+docker build -t bitcoin-explorer-via-blockchain-api . &&
+docker run -p 8080:8080 --name BTC-xplorer bitcoin-explorer-via-blockchain-api
 ```
 
 Default server will be started on port **8080**.
