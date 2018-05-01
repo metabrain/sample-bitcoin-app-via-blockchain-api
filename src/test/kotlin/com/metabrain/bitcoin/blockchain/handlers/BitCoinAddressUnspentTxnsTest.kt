@@ -1,6 +1,6 @@
 package com.metabrain.bitcoin.blockchain.handlers
 
-import com.metabrain.bitcoin.blockchain.handlers.BitcoinAddressUnspentTxnsHandler
+import com.metabrain.bitcoin.blockchain.services.BlockchainAPI
 import org.junit.Assert
 import org.junit.Test
 
@@ -13,23 +13,27 @@ class BitCoinAddressUnspentTxnsTest {
 
     @Test
     fun simpleExampleValidAddr() {
-        val res = BitcoinAddressUnspentTxnsHandler.unspentTxnsForAddress("1Aff4FgrtA1dZDwajmknWTwU2WtwUvfiXa")
-        Assert.assertEquals(res.statusCode, 200)
+        val h = BitcoinAddressUnspentTxnsHandler(BlockchainAPI())
+        val res = h.unspentTxnsForAddress("1P7doinGGP4eoSPR3i9xV9JbQciJoWkRFf")
+//        val res = h.unspentTxnsForAddress("1Fhx8a9REf5YwgHVkD35aKcenKPtHB1wMv")
+//        val res = h.unspentTxnsForAddress("1Aff4FgrtA1dZDwajmknWTwU2WtwUvfiXa")
+        Assert.assertEquals(res.statusCodeValue, 200)
 
         val body = res.body
-        val expectedBody = listOf(
-                BitcoinAddressUnspentTxnsHandler.Companion.Output(
-                        value = 63871,
-                        tx_hash = "db9b6ff6ba4fd5813fe1ae8980ee30645221e333c0f647bb1fc777d0f58d3e23",
-                        output_idx = 1
-                )
+        val expectedBody = BitcoinAddressUnspentTxnsHandler.Outputs(
+                outputs = listOf(BitcoinAddressUnspentTxnsHandler.Output(
+                        value = 5000000000,
+                        tx_hash = "38f51ecbd0b7df65700fea7e13374bfc3511aa4a2556a487820366fcdbc4c732", // is this little or big endian?!
+                        output_idx = 0
+                ))
         )
         Assert.assertEquals(expectedBody, body)
     }
 
     @Test
     fun invalidAddress() {
-        val res = BitcoinAddressUnspentTxnsHandler.unspentTxnsForAddress("Robert'); DROP TABLE Students;--")
-        Assert.assertEquals(res.statusCode, 500)
+        val h = BitcoinAddressUnspentTxnsHandler(BlockchainAPI())
+        val res = h.unspentTxnsForAddress("Robert'); DROP TABLE Students;--")
+        Assert.assertEquals(res.statusCodeValue, 500)
     }
 }
