@@ -3,6 +3,8 @@ package com.metabrain.bitcoin.blockchain.services
 import com.metabrain.bitcoin.blockchain.services.model.BitcoinTxn
 
 /**
+ * Interface for providing information about BTC.
+ *
  * Created by daniel.parreira on 01/05/2018.
  */
 interface BitcoinAPI {

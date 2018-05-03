@@ -27,7 +27,7 @@ class BlockchainAPI: BitcoinAPI {
 
         LOG.info("[$btcAddress] => {${res.status} ${res.statusText}}")
 
-        // NOTE: Okay, weird. Apparently when there is no free outputs for an address the server returns 500..? Shouldn't
+        // NOTE: Apparently when there is no free outputs for an address the server returns 500..? Shouldn't
         //  it return an empty list, since there are no outputs? This makes it very awkward to parse this endpoint.
         // Hopefully this will make it easier to consume from this API than from the endpoint directly.
         if(res.status==500 && res.body=="No free outputs to spend") {
